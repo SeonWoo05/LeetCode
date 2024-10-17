@@ -1,15 +1,12 @@
 class Solution(object):
     def twoSum(self, numbers, target):
-        left = 0
-        right = len(numbers) - 1
-        while left < right:
-            curr_sum = numbers[left] + numbers[right]
+        ht = {}
 
-            if curr_sum == target:
-                return [left + 1, right + 1]
+        for idx,val in enumerate(numbers):
+            match_num = target - val
+            match_idx = ht.get(match_num)
+
+            if match_idx is not None:
+                return [match_idx + 1, idx + 1]
             
-            elif curr_sum < target:
-                left += 1
-            
-            else:
-                right -= 1
+            ht[val] = idx
